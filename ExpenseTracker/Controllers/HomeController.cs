@@ -28,17 +28,42 @@ public class HomeController : Controller
     }
     public IActionResult Expenses()
     {
+        var allExpenses = _context.Expenses.ToList();//ToList() executes the query
+
+        ViewBag.Expenses = allExpenses.Sum(x => x.Value); //we take all of the expenses and get the sum of them
+        //  ViewBag.Expenses = totalExpenses;
+        
+        return View(allExpenses);
+    }
+    public IActionResult CreateEditExpense(int? id) 
+    {
+        //editing -> loading an expense by id
+        if (id != null) {         //SingleOrDefault grab the first expense id with the id we're looking for
+            var expenseInDb = _context.Expenses.SingleOrDefault(expense => expense.Id == id);
+            return View(expenseInDb);
+        }
         return View();
     }
-    public IActionResult CreateEditExpense()
-    {
-        return View();
+
+    public IActionResult DeleteExpense(int id) {
+        
+        var expenseInDb = _context.Expenses.SingleOrDefault(expense => expense.Id == id);
+        _context.Expenses.Remove(expenseInDb);
+        _context.SaveChanges();
+        return RedirectToAction("Expenses");
     }
     
     public IActionResult CreateEditExpenseForm(Expense model)
     {
+        if(model.Id == 0) {
+            //Create 
+            _context.Expenses.Add(model); //DbContext.ExpensesTable(class).Add(model)
+        } 
+        else 
+        {
+            _context.Expenses.Update(model);
+        }
         //_context references DB, Expenses table and adds the model
-        _context.Expenses.Add(model);
         _context.SaveChanges(); //have to update db anytime you edit the db, add,remove, edit etc
         // After form is submitted will redirect to Expenses page to see result
         return RedirectToAction("Expenses");

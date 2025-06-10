@@ -6,10 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 //Registers ExpenseTrackerDbContext with the app's dependency injection system and tells Entity Framework Core to use an in-memory database called ExpenseTrackerDB
 builder.Services.AddDbContext<ExpenseTrackerDbContext>(options => 
     options.UseInMemoryDatabase("ExpenseTrackerDB"));
+
 
 var app = builder.Build();
 
