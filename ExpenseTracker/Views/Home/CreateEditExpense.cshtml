@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "Create / Edit Expenses";
+}
+@*References*@
+@model ExpenseTracker.Models.Expense //references Expense model so you can use Id, Value, and Description properties
+
+<div class=" text-center">
+    <h1 class="display-4">Create or edit an expense</h1>
+</div>
+
+@* Submits a Model or Object of type Expense*@
+@* asp action is saying to use the action "CreateEditExpenseForm from HomeController" *@
+@* asp-controller is saying which controller to look at *@
+<form asp-action="CreateEditExpenseForm" asp-controller="Home">
+    <label>Id</label>
+    <input classes="form-control" type="number" placeholder="0" asp-for="Id"/>
+    
+    <label class="mt-4">Value $</label> @*margin top 4*@
+    <input classes="form-control" type="number" placeholder="0" asp-for="Value" step="0.01"/>
+    @*form-control styles*@
+    @*type renders as a numeric input with greyed out 0 placeholder*@
+    @*asp-for binds the expense mode's Value property*@
+    @*step allows for decimal entry in increments of 0.01*@
+
+    <label class="mt-4">Description</label>
+    <input classes="form-control" type="text" placeholder="0" asp-for="Description"/>
+
+    @*Creates a submit button, but not what happens when clicked*@
+    @*Need to create an action for the form in the Home Controller*@
+    <button class="btn btn-primary mt-4" type="submit">OK</button> 
+</form>

@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+<!-- Requirements list -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" /> <!---Object Relational Memory(ORM) Library to define domain classes, and interact with the db>-->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="9.0.5" /> <!--Using in-memory data store instead of a real database, used for testing/quick protoypes-->
+  </ItemGroup>
+
+</Project>
+
+<!-- 
+# 1. Scaffold a new MVC project and enter its folder
+dotnet new mvc -n ExpenseTracker
+cd ExpenseTracker
+
+# 2. Install Entity Framework Core and the In-Memory provider
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.InMemory
+
+# 3. (Optional) Restore all NuGet dependencies
+dotnet restore
+
+# 4. Verify which packages are referenced
+dotnet list package
+
+# 5. Build and run your app
+dotnet build
+dotnet run
+
+# 6. (When you add migrations later)
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+ -->
