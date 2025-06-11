@@ -1,12 +1,18 @@
-namespace Blog.Models;
+using System.ComponentModel.DataAnnotations;
 
-public class BlogModel
+namespace Blog.Models
 {
-    public int Id {get; set;}
-    public string? Title {get; set;}
-    public string? Description {get; set;}
-    public DateTime Date {get; set;}
-    public string? Author {get; set;}
+    public class BlogPost
+    {
+        public int Id { get; set; }
 
-    
+        [Required]
+        public string Title { get; set; } = "No Title Provided";
+        [Required]
+        public string Description { get; set; } = "No Description Provided";
+        public DateTime Date { get; set; } = DateTime.Now;
+        public string Author { get; set; } = "Anonymous User";
+
+
+    }
 }

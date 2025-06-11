@@ -1,7 +1,12 @@
+using System.ComponentModel;
+using Microsoft.EntityFrameworkCore;
+using Blog.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<BlogDbContext>(options => options.UseInMemoryDatabase("BlogDb"));
 
 var app = builder.Build();
 
