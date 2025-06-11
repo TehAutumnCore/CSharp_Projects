@@ -14,15 +14,17 @@ public class BlogController : Controller
         _context = context;
     }
 
-    public IActionResult Index()
+    [HttpGet]
+    public IActionResult Index() //All blogPosts
     {
         var blogPosts = _context.Blogs
         .OrderByDescending(p => p.Date) //view by date so the second post dated yesterday wont be after the first post dated today, OrderBy() to flip order
         .ToList(); //Renders a list of all blogs
         return View(blogPosts);
     }
-
-    public IActionResult Create()
+    
+    [HttpGet] //default behaviour for get
+    public IActionResult Create() //returns Create.cshtml and show the form
     {
         return View();
     }
@@ -38,6 +40,53 @@ public class BlogController : Controller
             return RedirectToAction(nameof(Index)); //returns the string "Index" same and safer way of RedirectToAction("Index")
         }
         return View(post); //re-show form with validation errors
+    }
+
+    //Edit - Http Get Action (check if post id exist)
+    [HttpGet]
+    public IActionResult Edit(int id)
+    {
+        var post = _context.Blogs.Find(id); //find the post id, .SingleOrDefault(post=>Id == id) if more complex conditions and slower->builds query for lookups
+        if (post == null) return NotFound(); //if post id doesnt exist //NotFound will produce a Status404NotFound response
+        return View(post); //return the Edit.cshtml View 
+    }
+
+    [HttpPost] //Http Post Action
+    [ValidateAntiForgeryToken] //Validates the AntiForgeryToken, if its not avaiable or is invalid, the validation will fail and the action method will not execute
+    public IActionResult Edit(int id, BlogPost blogPost)
+    {
+        if (id != blogPost.Id)
+        {
+            return BadRequest(); //Creates an http status error 400 bad request
+        }
+
+        if (ModelState.IsValid) //Check if model passed rules set in model such as [Required]
+        {
+            _context.Blogs.Update(blogPost);
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+        return View(blogPost);
+    }
+
+    [HttpGet]
+    public IActionResult Delete(int id)
+    {
+        var post = _context.Blogs.Find(id);
+        return (post == null) ? NotFound() : View(post);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    [ValidateAntiForgeryToken]
+    public IActionResult DeleteConfirmed(int id)
+    {
+        var post = _context.Blogs.Find(id);
+        if (post == null) return NotFound();
+
+        _context.Blogs.Remove(post);
+        _context.SaveChanges();
+        return RedirectToAction(nameof(Index));
+
     }
 
 

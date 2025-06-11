@@ -10,7 +10,11 @@
     <div class="mb-4">
         <h3>@post.Title</h3>
         <p>@post.Description</p>
-        <small><strong>Author:</strong> @post.Author | <strong>Date:</strong>@post.Date.ToShortDateString()</small>
+        <small><strong>Author:</strong> @post.Author | <strong>Date:</strong>@post.Date.ToShortDateString()</small>@*converts DateTime object value to short date string representation*@
+        <div class="mt-2">
+            <a class="btn btn-warning btn-sm" asp-controller="Blog" asp-action="Edit" asp-route-id="@post.Id"> Edit</a> 
+            <a class="btn btn-warning btn-sm" asp-controller="Blog" asp-action="Delete" asp-route-id="@post.Id"> Delete</a>
+        </div>
         <hr/>
     </div>
 }

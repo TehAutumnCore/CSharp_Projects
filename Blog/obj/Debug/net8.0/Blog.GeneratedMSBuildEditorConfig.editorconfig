@@ -22,6 +22,14 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZy9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/desktop/CSharp_Projects/CSharp_Projects/Blog/Views/Blog/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZy9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/desktop/CSharp_Projects/CSharp_Projects/Blog/Views/Blog/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZy9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/desktop/CSharp_Projects/CSharp_Projects/Blog/Views/Blog/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZy9pbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
