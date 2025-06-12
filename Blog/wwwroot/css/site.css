@@ -36,3 +36,39 @@ body {
 .visually-hidden-focusable:focus{
   top:0;
 }
+
+/*Dark mode, overrides bootstraps defaults when active*/
+
+/*Change the page background and text color*/
+body.dark-mode{
+  background-color:#121212;
+  color:#f5f5f5;
+}
+
+/*Style individual bootstrap cards (blog posts) in dark mode*/
+body.dark-mode .card{
+  background-color:#1e1e1e; /*slightly ligher than body*/
+  color:#f5f5f5;/*match text color*/
+}
+
+/*Style navbar and footer in dark mode*/
+body.dark-mode .navbar,
+body.dark-mode .footer{
+  background-color:#1a1a1a; /*deep dark gray*/
+  color:#ffffff; /*Bright text for contrast*/
+}
+
+/*outlined buttons in dark mode*/
+body.darkmode .btn-outline-primary{
+  background-color:#ffffff; /*White text*/
+  color:#ffffff; /*White border*/
+}
+
+/*Smooth transition for dark mode*/
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card,.navbar,.footer {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

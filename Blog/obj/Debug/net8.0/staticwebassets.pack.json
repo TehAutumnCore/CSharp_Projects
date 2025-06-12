@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/home/desktop/CSharp_Projects/CSharp_Projects/Blog/wwwroot/js/dark-mode-toggle.js",
+      "PackagePath": "staticwebassets/js/dark-mode-toggle.js"
+    },
+    {
       "Id": "/home/desktop/CSharp_Projects/CSharp_Projects/Blog/wwwroot/js/site.js",
       "PackagePath": "staticwebassets/js/site.js"
     },
