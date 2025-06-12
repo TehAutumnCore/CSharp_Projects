@@ -1,0 +1,28 @@
+@model Blog.Models.BlogPost
+
+@{
+    ViewData["Title"] = "Delete Blog Post";
+}
+
+<div class="container py-4">
+    <h2 class="mb-4">Are you sure you want to delete this post?</h2>
+
+    <div class="mb-3">
+        <h4>@Model.Title</h4>
+        <p>@Model.Description</p>
+        <small class="text-muted">
+            <strong>Author:</strong> @Model.Author | 
+            <strong>Date:</strong> @Model.Date.ToShortDateString()
+        </small>
+    </div>
+
+    <form asp-action="Delete" method="post">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id"/>
+
+        <div class="d-flex justify-content-between">
+            <a asp-action="Index" class="btn btn-secondary">Cancel</a> @*return back to index*@
+            <button type="submit" class="btn btn-danger">Delete</button> @**@
+        </div>
+    </form>
+</div>
