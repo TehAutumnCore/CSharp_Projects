@@ -41,9 +41,9 @@ else
 }
 
 
-@* Pagination Flow
+@* Pagination Flow + Logic
 User will go to page 2,
-the Controller will set:
+the Controller:
 view <- BlogPosts = posts, <-Model.BlogPosts(models)
 view <- CurrentPage = pages, <- Model.CurrentPage(ViewModels)
 view <- TotalPages = totalPages <- Model.TotalPages(ViewModels)
@@ -62,7 +62,7 @@ This will set each BlogPost, current page, and next page for the view.
 
         @for (int pageNumber = 1; pageNumber <= Model.TotalPages; pageNumber++) //shows the numbered page buttons, 
         {
-            <li class="page-item @(pageNumber == Model.CurrentPage ? "active" : "")"> @* highlights current page by using Bootstraps active class *@
+            <li class="page-item @(pageNumber == Model.CurrentPage ? "active" : "")"> @* highlights current page by using Bootstraps active class, highlting current page blue*@
                 <a class="page-link" asp-action="Index" asp-route-pages="@pageNumber">@pageNumber</a>
             </li>
         }
