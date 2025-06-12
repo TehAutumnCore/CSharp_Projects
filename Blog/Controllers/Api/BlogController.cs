@@ -35,6 +35,8 @@ public class BlogController : ControllerBase //ControllerBase is for building RE
         // return View(blogPosts);
         return Ok(blogPosts);
     }
+
+
     /* Removed because RESTful APIs/ControllerBase does not support View();
     [HttpGet] //default behaviour for get
     public IActionResult Create() //returns Create.cshtml and show the form
