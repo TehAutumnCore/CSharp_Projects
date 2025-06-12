@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "bzNjrPPPnVO5ackQu4iJyLgOtuyFjaT3/3vK1FMlW1U=",
+  "Hash": "maiDqZkJltksFz6xL1RnoG5iphY31Vkg2CtFXP6fjr4=",
   "Source": "Blog",
   "BasePath": "_content/Blog",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/home/desktop/CSharp_Projects/CSharp_Projects/Blog/wwwroot/js/dark-mode-toggle.js",
+      "SourceId": "Blog",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/desktop/CSharp_Projects/CSharp_Projects/Blog/wwwroot/",
+      "BasePath": "_content/Blog",
+      "RelativePath": "js/dark-mode-toggle.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/dark-mode-toggle.js"
     },
     {
       "Identity": "/home/desktop/CSharp_Projects/CSharp_Projects/Blog/wwwroot/js/site.js",
