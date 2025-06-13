@@ -1,0 +1,3 @@
+# Although not needed, Just extra precaution
+*.usersecrets
+secrets.json 

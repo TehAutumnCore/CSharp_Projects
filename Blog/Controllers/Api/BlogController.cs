@@ -5,19 +5,43 @@ using Blog.Data;
 using Blog.DTOs;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Authorization; //decoration to protect actions within the controller
 
 namespace Blog.Controllers.Api;
 
+[Authorize] //protects every action within the the controller
 [Route("api/[controller]")]
 [ApiController]
 public class BlogController : ControllerBase //ControllerBase is for building RESTful APIs while Controller is specifically for handling web pages and views
 {
-    private readonly BlogDbContext _context;
+    private readonly PortfolioDbContext  _context;
 
-    public BlogController(BlogDbContext context)
+    public BlogController(PortfolioDbContext  context)
     {
         _context = context;
     }
+
+    [Authorize]
+    [HttpGet("secure")]
+    public IActionResult GetSecretContent() //test endpoint for debugging tokens, can confirm JWT flow before locking down real CRUD routes and may be useful to verify roles later such as admin or guest
+    {
+        return Ok("You are authenticated and authorized to see this!");
+    }
+
+    /* Json Format
+    Post:   http://127.0.0.1:{port}/api/auth/register
+    Post:   http://127.0.0.1:{port}/api/auth/login
+
+    {
+      "username": "gary",
+      "password": "secure123!"
+    }
+
+    GET:    http://127.0.0.1:{port}/api/blog/secure
+    Header: Authorization
+    Value: {token received from logging in}
+
+    */
 
     [HttpGet]
     public IActionResult Index() //All blogPosts
