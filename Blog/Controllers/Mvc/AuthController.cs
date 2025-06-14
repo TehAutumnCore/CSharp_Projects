@@ -45,6 +45,7 @@ public class AuthController : Controller
     }
 
     //GET: /Auth/Register
+    
     [HttpGet]
     public IActionResult Register() => View(); //shows the Register.cshtml form
 
