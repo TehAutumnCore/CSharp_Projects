@@ -5,45 +5,20 @@ using Blog.Data;
 using Blog.DTOs;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Authorization; //decoration to protect actions within the controller
 
 namespace Blog.Controllers.Api;
 
-[Authorize] //protects every action within the the controller
 [Route("api/[controller]")]
 [ApiController]
 public class BlogController : ControllerBase //ControllerBase is for building RESTful APIs while Controller is specifically for handling web pages and views
 {
-    private readonly PortfolioDbContext  _context;
+    private readonly BlogDbContext _context;
 
-    public BlogController(PortfolioDbContext  context)
+    public BlogController(BlogDbContext context)
     {
         _context = context;
     }
 
-    [Authorize]
-    [HttpGet("secure")]
-    public IActionResult GetSecretContent() //test endpoint for debugging tokens, can confirm JWT flow before locking down real CRUD routes and may be useful to verify roles later such as admin or guest
-    {
-        return Ok("You are authenticated and authorized to see this!");
-    }
-
-    /* Json Format
-    Post:   http://127.0.0.1:{port}/api/auth/register
-    Post:   http://127.0.0.1:{port}/api/auth/login
-
-    {
-      "username": "gary",
-      "password": "secure123!"
-    }
-
-    GET:    http://127.0.0.1:{port}/api/blog/secure
-    Header: Authorization
-    Value: {token received from logging in}
-
-    */
-
-    [Authorize] //as long as theyre authorized can view, doesn't need admin
     [HttpGet]
     public IActionResult Index() //All blogPosts
     {
@@ -70,7 +45,6 @@ public class BlogController : ControllerBase //ControllerBase is for building RE
     }
     */
 
-    [Authorize] //as long as theyre authorized can view, doesn't need admin
     [HttpGet("{id}")]
     public IActionResult GetPostById(int id) //Grab individual Post by id
     {
@@ -89,7 +63,6 @@ public class BlogController : ControllerBase //ControllerBase is for building RE
         //else return the post with status 200 OK
     }
 
-    [Authorize(Roles = "Admin")]//must be authorized with admin through jwt to perform
     [HttpPost] //tells aspnet mvc that the action method should only respond to HTTP Post requests
     // [ValidateAntiForgeryToken] //Will create a hidden form field with a token and when submitted will check if it matches what the server expects
     public IActionResult Create([FromBody] BlogPostDto dto) //Create - Pass post<BlogPost> model, Takes JSON from the request body and maps to C# object
@@ -161,7 +134,6 @@ public class BlogController : ControllerBase //ControllerBase is for building RE
         return View(blogPost);
     }
     */
-    [Authorize(Roles = "Admin")]//must be authorized with admin through jwt to perform
     [HttpPut("{id}")]
     public IActionResult Edit(int id, [FromBody] BlogPostDto dto)
     {
@@ -201,7 +173,6 @@ public class BlogController : ControllerBase //ControllerBase is for building RE
 
     }
     */
-    [Authorize(Roles = "Admin")]//must be authorized with admin through jwt to perform
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {
