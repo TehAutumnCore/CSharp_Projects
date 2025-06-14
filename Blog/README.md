@@ -91,7 +91,7 @@ Then navigate to:
 - `https://localhost:{port}/BlogView` — for UI
 - `https://localhost:{port}/api/blog` — for API (test via Postman)
 
-## 🔐 Coming Next
+## 🔐 Coming Next .
 
 - JWT-based user authentication
 - Login, logout, and signup with secure tokens
