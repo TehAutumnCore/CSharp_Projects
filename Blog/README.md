@@ -99,21 +99,6 @@ Then navigate to:
 - API `[Authorize]` protection
 - Deployment to Azure
 
-## 🔐 Developer Notes: Managing Secrets Locally
-Dotnet user-secrets system writes to a secrets store on your local machine, not into the project. Its a per-user file stored securely on Linux ~/.microsoft/usersecrets/{guid}/secrets.json
-
-This app uses `dotnet user-secrets` to manage sensitive configuration during development:
-
-- The JWT signing key is stored securely using:
-```bash
-dotnet user-secrets set "Jwt:Key" "your-secret-key"
-```
-To view current secrets:
-```bash
-dotnet user-secrets list
-```
-Secrets are not stored in `appsettings.json` and are not checked into source control.
-
 ---
 
 **Author:** Gary Rojas
