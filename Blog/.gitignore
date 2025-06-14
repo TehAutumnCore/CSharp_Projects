@@ -1,3 +1,7 @@
 # Although not needed, Just extra precaution
 *.usersecrets
 secrets.json 
+bin/
+obj/
+*.pdb
+*.dll
