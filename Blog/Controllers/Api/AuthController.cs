@@ -36,6 +36,7 @@ public class AuthController : ControllerBase
         var user = new AppUser //creates user based on the validated ModelState
         {
             Username = dto.Username, //assigns client created username to db
+            Role = "Guest", //defaults all users to "Guest" role
             PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(dto.Password)), //creates random key (hmac.Key) used as salt
             PasswordSalt = hmac.Key //hashes the password with that salt and stores the result into password Salt.
         };

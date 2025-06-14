@@ -43,6 +43,7 @@ public class BlogController : ControllerBase //ControllerBase is for building RE
 
     */
 
+    [Authorize] //as long as theyre authorized can view, doesn't need admin
     [HttpGet]
     public IActionResult Index() //All blogPosts
     {
@@ -69,6 +70,7 @@ public class BlogController : ControllerBase //ControllerBase is for building RE
     }
     */
 
+    [Authorize] //as long as theyre authorized can view, doesn't need admin
     [HttpGet("{id}")]
     public IActionResult GetPostById(int id) //Grab individual Post by id
     {
@@ -87,6 +89,7 @@ public class BlogController : ControllerBase //ControllerBase is for building RE
         //else return the post with status 200 OK
     }
 
+    [Authorize(Roles = "Admin")]//must be authorized with admin through jwt to perform
     [HttpPost] //tells aspnet mvc that the action method should only respond to HTTP Post requests
     // [ValidateAntiForgeryToken] //Will create a hidden form field with a token and when submitted will check if it matches what the server expects
     public IActionResult Create([FromBody] BlogPostDto dto) //Create - Pass post<BlogPost> model, Takes JSON from the request body and maps to C# object
@@ -158,6 +161,7 @@ public class BlogController : ControllerBase //ControllerBase is for building RE
         return View(blogPost);
     }
     */
+    [Authorize(Roles = "Admin")]//must be authorized with admin through jwt to perform
     [HttpPut("{id}")]
     public IActionResult Edit(int id, [FromBody] BlogPostDto dto)
     {
@@ -197,6 +201,7 @@ public class BlogController : ControllerBase //ControllerBase is for building RE
 
     }
     */
+    [Authorize(Roles = "Admin")]//must be authorized with admin through jwt to perform
     [HttpDelete("{id}")]
     public IActionResult Delete(int id)
     {

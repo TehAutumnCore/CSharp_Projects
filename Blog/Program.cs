@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Options;
+using System.Security.Cryptography;
+using Blog.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,13 +32,38 @@ builder.Services.AddAuthorization(); //Enables [Authorize] attributes to be resp
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+//admin seeding logic so I, Gary am the sole Admin Creator of all things....related here...user-secrets is pretty cool :)
+using (var scope = app.Services.CreateScope()) //Creates a temporary DI scope, since we're not inside a controller or service class to manually grab IConfiguration, and PortfolioDbContext
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+    var config = scope.ServiceProvider.GetRequiredService<IConfiguration>(); // so you can read from appsettings.json, user-secrets, environmental variables, etc.
+    var context = scope.ServiceProvider.GetRequiredService<PortfolioDbContext>();// grabs database context from DI, to query or update the db manually.
+
+    var adminUsername = config["AdminCredentials:Username"]; //grabs stored secrets from user-secrets for Admin Username
+    var adminPassword = config["AdminCredentials:Password"];//grab stored secrets from user-secrets for Admin Password
+
+    if (!context.Users.Any(u => u.Username == adminUsername)) //checks if username already exists in the database
+    {
+        using var hmac = new HMACSHA512(); //creates HMACSHA512 Hasher to generate password salt(hmac.Key) and hash the password
+        var adminUser = new AppUser //Creates new AppUser object with Username from secret store with admin and secured hashed password
+        {
+            Username = adminUsername!, //! is a null forgiving operator because compiler cant guarantee its not null
+            Role = "Admin",
+            PasswordSalt = hmac.Key,
+            PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(adminPassword!)) //hashes password with salt(hmac.Key)
+        };
+
+        context.Users.Add(adminUser); //adds the admin user to teh database and saves it permanently
+        context.SaveChanges(); //save database changes
+    }
 }
+
+// Configure the HTTP request pipeline.
+    if (!app.Environment.IsDevelopment())
+    {
+        app.UseExceptionHandler("/Home/Error");
+        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+        app.UseHsts();
+    }
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

@@ -24,6 +24,13 @@ namespace Blog.Services
                 new Claim(ClaimTypes.Role, user.Role)
             };
 
+            /* In JSON will create
+            new AppUser {
+                Username = "gary",
+                Role = "Admin",
+            }
+            */
+
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]!)); //grabs secret key from appsettings.json and turns into bytes for hash-based signing(HMAC)
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);//Use HMAC SHA-256 to sign the JWT using this key
 
