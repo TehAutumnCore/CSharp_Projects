@@ -3,15 +3,13 @@ using Blog.Models;
 
 namespace Blog.Data
 {
-    public class PortfolioDbContext  : DbContext
+    public class BlogDbContext : DbContext
     {
         public DbSet<BlogPost> Blogs { get; set; }
-        public DbSet<AppUser> Users{ get; set; }
 
-        public PortfolioDbContext (DbContextOptions<PortfolioDbContext > options) : base(options)
+        public BlogDbContext(DbContextOptions<BlogDbContext> options) : base(options)
         {
-
+            
         }
-        
     }
 }

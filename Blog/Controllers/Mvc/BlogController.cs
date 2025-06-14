@@ -8,9 +8,9 @@ namespace Blog.Controllers.Mvc;
 
 public class BlogViewController : Controller
 {
-    private readonly PortfolioDbContext  _context;
+    private readonly BlogDbContext _context;
 
-    public BlogViewController(PortfolioDbContext  context)
+    public BlogViewController(BlogDbContext context)
     {
         _context = context;
     }

@@ -43,11 +43,3 @@
 /home/desktop/CSharp_Projects/CSharp_Projects/Blog/obj/Debug/net8.0/Blog.pdb
 /home/desktop/CSharp_Projects/CSharp_Projects/Blog/obj/Debug/net8.0/Blog.genruntimeconfig.cache
 /home/desktop/CSharp_Projects/CSharp_Projects/Blog/obj/Debug/net8.0/ref/Blog.dll
-/home/desktop/CSharp_Projects/CSharp_Projects/Blog/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
-/home/desktop/CSharp_Projects/CSharp_Projects/Blog/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
-/home/desktop/CSharp_Projects/CSharp_Projects/Blog/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
-/home/desktop/CSharp_Projects/CSharp_Projects/Blog/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
-/home/desktop/CSharp_Projects/CSharp_Projects/Blog/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
-/home/desktop/CSharp_Projects/CSharp_Projects/Blog/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
-/home/desktop/CSharp_Projects/CSharp_Projects/Blog/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
-/home/desktop/CSharp_Projects/CSharp_Projects/Blog/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
