@@ -1,0 +1,48 @@
+@model Blog.ViewModels.ProjectIndexViewModel
+
+@{
+    ViewData["Title"] = "Projects";
+}
+
+<h2 class="mb-4">Projects</h2>
+
+<div class="row row-cols-1 row-cols-md-2 g-4">
+@foreach (var project in Model.Projects)
+{   
+    <div class="col">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">@project.Title</h5>
+                <p class="card-text">@project.Description</p>
+                <a href="@project.Link" class="btn btn-primary" target="_blank">View Project</a>
+            </div>
+        </div>
+    </div>
+}
+</div>
+
+<!--Pagination-->
+<nav class="mt-4">
+    <ul class="pagination justify-content-center">
+        @if(Model.HasPreviousPage)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-action="Index" asp-route-page="@(Model.CurrentPage - 1)" >Previous</a>
+            </li>
+        }
+
+        @for(int pageNumber = 1; pageNumber <= Model.TotalPages; pageNumber++)
+        {
+            <li class="page-item @(pageNumber == Model.CurrentPage ? "active" : "")">
+                <a class="page-link" asp-action="Index" asp-route-page="@pageNumber">@pageNumber</a>
+            </li>
+        }
+
+        @if(Model.HasNextPage)
+        {
+            <li class="page-item">
+                <a class="page-link" asp-action="Index" asp-route-page="@(Model.CurrentPage + 1)">Next</a>
+            </li>
+        }
+    </ul>
+</nav>
