@@ -5,3 +5,10 @@ bin/
 obj/
 *.pdb
 *.dll
+
+bin/
+obj/
+*.dll
+*.pdb
+*.json
+*.cache
