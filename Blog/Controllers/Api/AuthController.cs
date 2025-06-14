@@ -10,14 +10,14 @@ using Microsoft.VisualBasic;
 
 namespace Blog.Controllers.Api;
 
+[Route("api/auth")]
 [ApiController]
-[Route("api/[controller]")]
-public class AuthController : ControllerBase
+public class AuthApiController : ControllerBase
 {
     private readonly PortfolioDbContext _context; //access to the users table like Db.Users.Add(user)
     private readonly IJwtTokenService _tokenService; //calls the CreateToken(user) method from IJwtTokenServices.cs
 
-    public AuthController(PortfolioDbContext context, IJwtTokenService tokenService) //constructor injection
+    public AuthApiController(PortfolioDbContext context, IJwtTokenService tokenService) //constructor injection
     {
         _context = context; //updates db with AuthController(context,)
         _tokenService = tokenService; //updates with user information based on when IJwtTokenServices is called through program.cs

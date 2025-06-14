@@ -9,7 +9,10 @@
 <div class="container py-4">
     <div class="d-flex justify-content-between align-items-center">
         <h2>@ViewData["Title"]</h2>
-        <a class="btn btn-success" asp-controller="BlogView" asp-action="Create">+Create New Post</a>
+        @if (User.IsInRole("Admin"))
+        {
+            <a class="btn btn-success" asp-controller="BlogView" asp-action="Create">+Create New Post</a>
+        }
     </div>
 </div>
 
@@ -29,12 +32,15 @@ else
                     <strong>Author:</strong>@post.Author |
                     <strong>Date:</strong>@post.Date.ToShortDateString()
                 </small>
-                <div class="mt-3">
-                    <a class="btn btn-sm btn-outline-primary me-2" asp-controller="BlogView" asp-action="Edit"
-                        asp-route-id="@post.Id"> Edit</a>
-                    <a class="btn btn-sm btn-outline-danger" asp-controller="BlogView" asp-action="Delete"
-                        asp-route-id="@post.Id"> Delete</a>
-                </div>
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="mt-3">
+                        <a class="btn btn-sm btn-outline-primary me-2" asp-controller="BlogView" asp-action="Edit"
+                            asp-route-id="@post.Id"> Edit</a>
+                        <a class="btn btn-sm btn-outline-danger" asp-controller="BlogView" asp-action="Delete"
+                            asp-route-id="@post.Id"> Delete</a>
+                    </div>
+                }
             </div>
         </div>
     }
@@ -60,7 +66,7 @@ This will set each BlogPost, current page, and next page for the view.
             </li>
         }
 
-        @for (int pageNumber = 1; pageNumber <= Model.TotalPages; pageNumber++) //shows the numbered page buttons, 
+        @for (int pageNumber = 1; pageNumber <= Model.TotalPages; pageNumber++) //shows the numbered page buttons,
         {
             <li class="page-item @(pageNumber == Model.CurrentPage ? "active" : "")"> @* highlights current page by using Bootstraps active class, highlting current page blue*@
                 <a class="page-link" asp-action="Index" asp-route-pages="@pageNumber">@pageNumber</a>

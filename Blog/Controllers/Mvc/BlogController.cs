@@ -3,6 +3,7 @@ using Blog.Models;
 using Blog.Data;
 using Blog.ViewModels;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Blog.Controllers.Mvc;
 
@@ -23,6 +24,7 @@ public class BlogViewController : Controller
     */
 
     //Index with Pagination
+    [AllowAnonymous] //publicly viewable, doesnt matter the role
     public IActionResult Index(int pages = 1) //default to page number 1 if not provided
     {
         const int pageSize = 5; //show 5 post per page
@@ -49,12 +51,14 @@ public class BlogViewController : Controller
         return View(viewModel); //sends ViewModel to Index.cshtml
     }
 
+    [Authorize(Roles ="Admin")] //requires a JWT Token and must include the admin role
     [HttpGet]
     public IActionResult Create()
     {
         return View(); //Views/Blog/Create.cshtml
     }
 
+    [Authorize(Roles ="Admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Create(BlogPost post)
@@ -68,6 +72,7 @@ public class BlogViewController : Controller
         return View(post);
     }
 
+    [Authorize(Roles ="Admin")]
     [HttpGet]
     public IActionResult Edit(int id)
     {
@@ -76,6 +81,7 @@ public class BlogViewController : Controller
         return View(post); //Views/Blog/Edit.cshtml
     }
 
+    [Authorize(Roles ="Admin")]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult Edit(int id, BlogPost post)
@@ -88,6 +94,7 @@ public class BlogViewController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+    [Authorize(Roles ="Admin")]
     [HttpGet]
     public IActionResult Delete(int id)
     {
@@ -96,6 +103,7 @@ public class BlogViewController : Controller
         return View(post);
     }
 
+    [Authorize(Roles ="Admin")]
     [HttpPost, ActionName("Delete")]
     [ValidateAntiForgeryToken]
     public IActionResult DeleteConfirmed(int id)

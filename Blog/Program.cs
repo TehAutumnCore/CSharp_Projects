@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient(); //needed to provide HttpClient isntances via dependency Injection
 builder.Services.AddDbContext<PortfolioDbContext>(options => options.UseInMemoryDatabase("BlogDb"));
 builder.Services.AddScoped<IJwtTokenService, JwtTokenService>(); //When somethings asks for IJwtTokenService give it an instance of JwtTokenService
 //JWT Auth
@@ -29,6 +30,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)//Regi
     };
 });
 builder.Services.AddAuthorization(); //Enables [Authorize] attributes to be respected
+builder.Services.AddSession(options => //enables HttpContext.Session
+{                                                   //configures the following
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Set how long the session lasts
+    options.Cookie.HttpOnly = true;                 // Prevent JS Access
+    options.Cookie.IsEssential = true;              // Required for GDPR compliance -- a rule set to protect personal data and privaacy of EU individuals
+});
 
 var app = builder.Build();
 
@@ -69,6 +76,16 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseSession(); //Adds session middleware to the request pipeline
+app.Use(async (context, next) => //when a JWT token is stored in session treat the user as authenticated using this token
+{
+    var token = context.Session.GetString("JwtToken"); 
+    if (!string.IsNullOrEmpty(token))
+    {
+        context.Request.Headers.Authorization = $"Bearer {token}";
+    }
+    await next();
+});
 
 app.UseAuthentication(); //Jwt auth - must authenticate before authorizing
 app.UseAuthorization();

@@ -1,0 +1,30 @@
+@model Blog.DTOs.Auth.RegisterDto
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2 class="mb-4">Register</h2>
+
+<form asp-action="Register" asp-controller="Auth" method="post" class="card p-4 shadow-sm">
+    <div class="form-group mb-3">
+        <label asp-for="Username" class="form-label"></label>
+        <input asp-for="Username" class="form-control" />
+        <span asp-validation-for="Username" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Register</button>
+    <a asp-action="Login" class="btn btn-link">Already have an account? Login</a>
+</form>
+
+@* Shows instant error messages in the browser without requiring a full page reload.
+Prevenets the form from submitting if the inputs are invalid
+and respects the [DataAnnotations] in the DTOs and Models, placing after the form ensures the DOM is fully rendered when the script runs*@
+@section Scripts { 
+    <partial name="_ValidationScriptsPartial" />
+}

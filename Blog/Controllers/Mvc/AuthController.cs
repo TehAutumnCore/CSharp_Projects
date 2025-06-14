@@ -3,6 +3,7 @@ using System.Net.Http.Headers; //privudes classes for working with HTTP headers,
 using System.Text; //provides classes for working with text, encodings, string manipulation
 using System.Text.Json; //provides classes for serializing objects to JSON and deseerializing object from JSON
 using Blog.DTOs.Auth; //provides dto authentication and authorization functionalities
+
 namespace Blog.Controllers.Mvc;
 
 public class AuthController : Controller
@@ -45,7 +46,7 @@ public class AuthController : Controller
     }
 
     //GET: /Auth/Register
-    
+
     [HttpGet]
     public IActionResult Register() => View(); //shows the Register.cshtml form
 
