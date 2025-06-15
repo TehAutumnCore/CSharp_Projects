@@ -1,3 +1,7 @@
+if (localStorage.getItem('Theme') === 'dark') { //temp fix for dark mode flicker when clicking on a nav link. if the mode was set to dark, set it to dark mode
+    document.body.classList.add('dark-mode');
+}
+
 document.addEventListener('DOMContentLoaded',function() { //wait until the entire page is loaded before running script
     const toggleButton = document.getElementById('darkModeToggle');  //grabs the dark mode toggle from from the layout using its ID
     const darkModeIcon = document.getElementById('darkModeIcon'); //Grabs the icon inside the button 
