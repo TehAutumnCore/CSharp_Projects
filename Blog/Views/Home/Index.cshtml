@@ -2,9 +2,49 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome To My Blog!</h1>
-    <p> Please fill in the blank To get your blog posted!</p>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-@* <div class="alert alert-success">Bootstrap is working!</div> *@
+<main class="container py-5" role="main">
+    <div class="row align-items-center">
+        <!-- Profile Image -->
+        <div class="col-md-4 text-center mb-4 mb-md-0">
+            <img 
+                src="~/images/ProfilePicture.jpg" 
+                alt="Photo of Gary Rojas" 
+                class="img-fluid rounded-circle shadow mx-auto d-block" 
+                style="max-width: 250px;">
+        </div>
+
+        <!-- Bio and Resume -->
+        <div class="col-md-8">
+            <h1 class="display-4 fw-bold mb-3">Hi, I'm Gary Rojas <span role="img" aria-label="waving hand">👋</span></h1>
+
+            <p class="lead mb-2">
+                I'm a software developer with experience in full-stack development, C#/.NET, and ASP.NET Core.
+            </p>
+            <p class="mb-4">
+                I enjoy building clean, accessible, and scalable web applications. This site is both my technical blog and developer portfolio. You’ll find my projects, resume, and API experience all built with clean code and strong architecture.
+            </p>
+
+            <div class="mt-4 d-flex flex-wrap gap-2">
+                <!-- Resume Download -->
+                <a class="btn btn-outline-primary" href="~/resume/Gary_Rojas_Resume.pdf" download>
+                    📄 <span class="visually-hidden">Download Resume</span> Download Resume
+                </a>
+
+                <!-- Blog -->
+                <a class="btn btn-outline-secondary" asp-controller="BlogView" asp-action="Index">
+                    💬 <span class="visually-hidden">Go to blog</span> Checkout My Blog
+                </a>
+
+                <!-- Projects -->
+                <a class="btn btn-outline-secondary" asp-controller="Projects" asp-action="Index">
+                    💻 <span class="visually-hidden">View projects</span> View Projects
+                </a>
+
+                <!-- Contact (disabled for now) -->
+                <a class="btn btn-outline-dark disabled" href="#">
+                    ✉️ <span class="visually-hidden">Contact me form coming soon</span> Contact Me (Coming Soon)
+                </a>
+            </div>
+        </div>
+    </div>
+</main>

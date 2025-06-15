@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Blog Home</title>
+    <title>@ViewData["Title"] Portfolio</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Blog.styles.css" asp-append-version="true" />
@@ -18,7 +18,7 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
             aria-label="Main navigation">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Blog</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Portfolio</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -39,8 +39,9 @@
                     <ul class="navbar-nav">
                         @if (Context.Session.GetString("JwtToken") != null) //checks is a JWT token is stored in the current session if so shows wlecome and logout link
                         {
+                            var username = User.Identity?.Name ?? "User";
                             <li class="nav-item">
-                                <span class="nav-link text-dark">Welcome!</span>
+                                <span class="nav-link text-dark">Welcome, @username!</span>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="Auth" asp-action="Logout">Logout</a>
@@ -67,18 +68,29 @@
     </header>
 
     <!-- Main content with ARIA landmark role -->
-    <div class="container">
         <main id="main-content" role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
 
     <!--Footer with semantic tag-->
-    <footer class="border-top footer text-muted">
+    <footer class="border-top mt-5 text-muted py-4 bg-light">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div>
+                &copy; @DateTime.Now.Year - Gary Rojas
+            </div>
+            <div>
+                <a href="mailto:Rojas.Gary.J@outlook.com" class="text-decoration-none me-3">📧 Email</a>
+                <a href="https://github.com/TehAutumnCore" target="_blank" class="text-decoration-none me-3">💻 GitHub</a>
+                <a href="https://www.linkedin.com/in/gary-rojas-647248160/" target="_blank" class="text-decoration-none">🔗 LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+    
+    @* <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2025 - Blog - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer> *@
 
     <!--Scripts-->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
