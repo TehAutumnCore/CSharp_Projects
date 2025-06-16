@@ -121,6 +121,7 @@ Uses `dotnet user-secrets` for configuration:
 dotnet user-secrets set "Jwt:Key" "your-secret-key"
 dotnet user-secrets set "EmailSettings:SenderEmail" "you@gmail.com"
 dotnet user-secrets set "EmailSettings:SmtpPassword" "your-app-password"
+dotnet user-secrets set "ConnectionStrings:DefaultConnection """
 ```
 
 See all secrets:
