@@ -12,6 +12,10 @@
             <div class="col">
                 <div class="card h-100 shadow-sm">
                     <div class="card-body">
+                        @if(!string.IsNullOrWhiteSpace(project.ImagePath))
+                        {
+                            <img src="@project.ImagePath" class="card-img-top mb-3 rounded" alt="@project.Title project image">
+                        }
                         <h5 class="card-title">@project.Title</h5>
                         <p class="card-text">@project.Description</p>
                         <a href="@project.Link" class="btn btn-primary" target="_blank">View Project</a>
