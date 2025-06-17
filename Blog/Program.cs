@@ -37,7 +37,7 @@ builder.Services.AddSession(options => //enables HttpContext.Session
     options.Cookie.IsEssential = true;              // Required for GDPR compliance -- a rule set to protect personal data and privaacy of EU individuals
 });
 
-var app = builder.Build();
+var app = builder.Build(); 
 
 //admin seeding logic so I, Gary am the sole Admin Creator of all things....related here...user-secrets is pretty cool :)
 using (var scope = app.Services.CreateScope()) //Creates a temporary DI scope, since we're not inside a controller or service class to manually grab IConfiguration, and PortfolioDbContext
