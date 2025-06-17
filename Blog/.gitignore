@@ -12,3 +12,7 @@ obj/
 *.pdb
 *.json
 *.cache
+
+/publish/
+/out/
+publish.zip
