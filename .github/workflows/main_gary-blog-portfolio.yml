@@ -24,19 +24,19 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore Blog/Blog.csproj
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build Blog/Blog.csproj --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish Blog/Blog.csproj -c Release -o publish
+        run: dotnet publish Blog/Blog.csproj --configuration Release --output ./publish
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: publish/
+          path: ./publish
 
   deploy:
     runs-on: windows-latest
@@ -45,15 +45,15 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+      id-token: write
+      contents: read
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: .net-app
-      
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -68,4 +68,3 @@ jobs:
           app-name: 'gary-blog-portfolio'
           slot-name: 'Production'
           package: .
-          
