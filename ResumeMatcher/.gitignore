@@ -1,0 +1,86 @@
+###########################
+# ASP.NET / .NET Core
+###########################
+
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+*.dll
+*.exe
+*.app
+*.log
+
+# Dotnet-ef and migrations
+Migrations/
+
+# Rider / JetBrains
+.idea/
+
+# VS Code workspace settings
+.vscode/
+.vscode/settings.json
+.vscode/launch.json
+
+# ASP.NET Secrets (optional)
+secrets.json
+
+# ASP.NET Local Environment files
+appsettings.Development.json
+
+###########################
+# Python
+###########################
+
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.env
+*.venv
+env/
+venv/
+ENV/
+
+# Python logs
+*.log
+
+# Jupyter
+.ipynb_checkpoints
+
+###########################
+# Files & Datasets
+###########################
+
+uploads/
+datasets/
+*.csv
+*.tsv
+*.xlsx
+*.json
+
+###########################
+# Logs & temp files
+###########################
+
+*.tmp
+*.bak
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+
+###########################
+# Git
+###########################
+
+# Ignore Git conflict backups
+*.orig
+
+# Node/npm (if used later)
+node_modules/
+package-lock.json
